@@ -1,6 +1,8 @@
 # 🌃 Recomendador de Restaurantes en Madrid (OSM) 🍽️
 
 ¡Bienvenido! Esta página web interactiva te ayuda a descubrir tu próxima cena en el vibrante **centro de Madrid**, con un ambiente inspirado en la "Madrid de Noche". Todas las recomendaciones se basan en datos actualizados de **OpenStreetMap (OSM)**.
+
+
 👉 [Haz clic aquí para ver la web en directo 🍽️✨](https://pgf3712.github.io/Madrid-Restaurants-AI-JULES/)
 
 ## ✨ Key Features
