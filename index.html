@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recomendador de Restaurantes en Madrid (OSM)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>¿Qué te apetece cenar hoy en Madrid? 🍴</h1>
+        <p class="subtitle">Encuentra recomendaciones basadas en datos de OpenStreetMap</p>
+
+        <div class="form-group">
+            <label for="foodType">Selecciona el tipo de comida 🍱</label>
+            <select id="foodType">
+                <option value="all">Cualquier tipo</option>
+                <option value="asian">🍣 Asiática</option>
+                <option value="italian">🍝 Italiana</option>
+                <option value="mexican">🌮 Mexicana</option>
+                <option value="spanish">🥘 Española / Tapeo</option>
+                <option value="steakhouse">🥩 Parrilla / Steakhouse</option>
+                <option value="fine_dining">🍷 Alta cocina / Luxury</option> <!-- Mapped to relevant OSM tags if possible -->
+                <option value="vegetarian_vegan">🥗 Vegetariana / Vegana</option>
+                <option value="american_burgers">🍔 Americana / Burgers</option>
+                <option value="breakfast_brunch">🍳 Desayuno / Brunch</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="zone">¿En qué zona del centro de Madrid estás? 🌆</label>
+            <select id="zone">
+                <option value="sol_callao_gran_via">🔆 Sol - Callao - Gran Vía</option>
+                <option value="malasana_tribunal">🎨 Malasaña - Tribunal</option>
+                <option value="chueca">🌈 Chueca</option>
+                <option value="la_latina">🏛️ La Latina</option>
+                <option value="retiro_paseo_prado">🌳 Retiro - Paseo del Prado</option>
+                <option value="barrio_letras">🎭 Barrio de las Letras</option>
+                <option value="lavapies">🔥 Lavapiés</option>
+            </select>
+        </div>
+
+        <!-- Budget selection removed as per "no cost API" constraint -->
+
+        <button id="searchButton">Buscar Restaurantes 🔍</button>
+
+        <!-- After the searchButton, before resultsArea -->
+        <div id="loader" class="loader" style="display: none;">
+            <div class="loader-inner">
+                <div class="loader-plate">🍽️</div>
+                <div class="loader-sparkle sparkle-1">✨</div>
+                <div class="loader-sparkle sparkle-2">✨</div>
+                <div class="loader-sparkle sparkle-3">✨</div>
+            </div>
+            <p class="loader-text">Buscando Sabores...</p>
+        </div>
+
+        <div id="resultsArea">
+            <h2>Restaurantes Sugeridos:</h2>
+            <ul id="restaurantList">
+                <!-- JS will populate this -->
+            </ul>
+            <p id="noResultsMessage" style="display:none;">No se encontraron restaurantes que coincidan con tus criterios.</p>
+        </div>
+         <div id="api-status" style="margin-top: 15px; font-size: 0.8em; color: #777;"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
