@@ -30,15 +30,6 @@ Este proyecto se nutre de los datos abiertos y colaborativos de [OpenStreetMap](
 
 Para asegurar que OpenStreetMap siga siendo un recurso increíble y gratuito para todos, es **crucial** respetar sus políticas de uso:
 
-*   **👤 User-Agent:** ¡Identifícate! Es una muestra de respeto a la comunidad OSM. Este proyecto incluye un User-Agent genérico en `script.js`. **Por favor, personalízalo para tu aplicación.**
-    *   Abre `script.js` y busca la línea:
-        ```javascript
-        const CUSTOM_USER_AGENT = 'MadridRestaurantRecommender/1.0 (Contact: your-email@example.com)';
-        ```
-    *   Modifícala para que refleje tu aplicación o sitio web, por ejemplo:
-        ```javascript
-        const CUSTOM_USER_AGENT = 'MiAppDeRestaurantesMadrid/1.2 (micontacto@misitio.com)';
-        ```
 *   **🚦 Límites de Solicitud:** ¡No satures los servidores! Evita enviar solicitudes de forma demasiado rápida o frecuente. Las consultas muy complejas también pueden impactar.
     *   **Overpass API Usage Policy:** [https://wiki.openstreetmap.org/wiki/Overpass_API#Usage_Policy_.2F_Acceptable_Use](https://wiki.openstreetmap.org/wiki/Overpass_API#Usage_Policy_.2F_Acceptable_Use)
     *   (Si se usara Nominatim directamente, también se aplicaría su política: [https://operations.osmfoundation.org/policies/nominatim/](https://operations.osmfoundation.org/policies/nominatim/))
