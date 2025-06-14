@@ -1,216 +1,69 @@
-# BlenderMCP - Blender Model Context Protocol Integration
+# 🌃 Recomendador de Restaurantes en Madrid (OSM) 🍽️
 
-BlenderMCP connects Blender to Claude AI through the Model Context Protocol (MCP), allowing Claude to directly interact with and control Blender. This integration enables prompt assisted 3D modeling, scene creation, and manipulation.
+¡Bienvenido! Esta página web interactiva te ayuda a descubrir tu próxima cena en el vibrante **centro de Madrid**, con un ambiente inspirado en la "Madrid de Noche". Todas las recomendaciones se basan en datos actualizados de **OpenStreetMap (OSM)**.
 
-[Full tutorial](https://www.youtube.com/watch?v=lCyQ717DuzQ)
+## ✨ Key Features
 
-### Join the Community
+*   ** Filtrado Personalizado:** Elige tu tipo de comida preferido 🍱 y la zona del centro de Madrid que te apetezca 📍.
+*   **🌙 Tema "Madrid de Noche":** Disfruta de un diseño moderno, elegante y pop, con degradados oscuros, tipografías actuales y animaciones sutiles.
+*   **🗺️ Basado en OpenStreetMap:** Accede a una amplia base de datos de restaurantes gracias a la comunidad OSM, consultada vía Overpass API.
+*   **🔗 Enlaces Útiles:** Cada restaurante sugerido incluye (si está disponible en OSM) su nombre, dirección, tipo de cocina, un enlace a su ubicación en OpenStreetMap y, a veces, ¡hasta su sitio web!
+*   **🚫 Sin Costes Directos:** Funciona utilizando los servicios públicos de OpenStreetMap. (¡Recuerda respetar sus políticas de uso!).
+*   **📱 Diseño Responsivo:** Adaptado para una buena experiencia en diferentes tamaños de pantalla.
 
-Give feedback, get inspired, and build on top of the MCP: [Discord](https://discord.gg/z5apgR8TFU)
+## 🚀 ¿Qué te apetece cenar hoy en Madrid? 🍴
 
-### Supporters
+### Cómo Usar
 
-**Top supporters:**
+1.  **Abre `index.html`:** Simplemente arrastra el archivo `index.html` a tu navegador web favorito.
+2.  **Selecciona tus Preferencias:**
+    *   Elige el "Tipo de comida" 🌮.
+    *   Selecciona la "Zona / Barrio del centro de Madrid" 🌆.
+3.  **Haz Clic en "Buscar Restaurantes 🔍".**
+4.  **¡Explora las Sugerencias!** La página mostrará una lista de hasta 5 restaurantes. Si no hay coincidencias, te lo haremos saber.
 
-[CodeRabbit](https://www.coderabbit.ai/)
+## openstreetmap Fuente de Datos: OpenStreetMap
 
-**All supporters:**
+Este proyecto se nutre de los datos abiertos y colaborativos de [OpenStreetMap](https://www.openstreetmap.org/). Los restaurantes se consultan utilizando la potente [Overpass API](https://wiki.openstreetmap.org/wiki/Overpass_API).
 
-[Support this project](https://github.com/sponsors/ahujasid)
+### 📜 ¡IMPORTANTE! Políticas de Uso de OpenStreetMap
 
-## Release notes (1.1.0)
+Para asegurar que OpenStreetMap siga siendo un recurso increíble y gratuito para todos, es **crucial** respetar sus políticas de uso:
 
-- Added support for Poly Haven assets through their API
-- Added support to prompt 3D models using Hyper3D Rodin
-- For newcomers, you can go straight to Installation. For existing users, see the points below
-- Download the latest addon.py file and replace the older one, then add it to Blender
-- Delete the MCP server from Claude and add it back again, and you should be good to go!
+*   **👤 User-Agent:** ¡Identifícate! Es una muestra de respeto a la comunidad OSM. Este proyecto incluye un User-Agent genérico en `script.js`. **Por favor, personalízalo para tu aplicación.**
+    *   Abre `script.js` y busca la línea:
+        ```javascript
+        const CUSTOM_USER_AGENT = 'MadridRestaurantRecommender/1.0 (Contact: your-email@example.com)';
+        ```
+    *   Modifícala para que refleje tu aplicación o sitio web, por ejemplo:
+        ```javascript
+        const CUSTOM_USER_AGENT = 'MiAppDeRestaurantesMadrid/1.2 (micontacto@misitio.com)';
+        ```
+*   **🚦 Límites de Solicitud:** ¡No satures los servidores! Evita enviar solicitudes de forma demasiado rápida o frecuente. Las consultas muy complejas también pueden impactar.
+    *   **Overpass API Usage Policy:** [https://wiki.openstreetmap.org/wiki/Overpass_API#Usage_Policy_.2F_Acceptable_Use](https://wiki.openstreetmap.org/wiki/Overpass_API#Usage_Policy_.2F_Acceptable_Use)
+    *   (Si se usara Nominatim directamente, también se aplicaría su política: [https://operations.osmfoundation.org/policies/nominatim/](https://operations.osmfoundation.org/policies/nominatim/))
 
-## Features
+### 🧩 Mapeo de Datos (Simplificado)
 
-- **Two-way communication**: Connect Claude AI to Blender through a socket-based server
-- **Object manipulation**: Create, modify, and delete 3D objects in Blender
-- **Material control**: Apply and modify materials and colors
-- **Scene inspection**: Get detailed information about the current Blender scene
-- **Code execution**: Run arbitrary Python code in Blender from Claude
+-   **Zonas de Madrid:** Las zonas en el desplegable se mapean a coordenadas centrales aproximadas con un radio de búsqueda (ver `madridZones` en `script.js`).
+-   **Tipos de Comida:** Las categorías de comida se traducen a etiquetas `cuisine` de OSM (ver `cuisineMapping` en `script.js`). La calidad y especificidad de estas etiquetas varían en OSM.
+-   **"Mejores" Restaurantes:** Esta herramienta **no determina los "mejores"** restaurantes en términos de calidad, precio o popularidad, ya que OSM no contiene este tipo de información subjetiva de forma estandarizada. Simplemente lista restaurantes que coinciden con los criterios de tipo de comida y ubicación.
 
-## Components
+## 🤖 Desarrollo y Agradecimientos
 
-The system consists of two main components:
+Este proyecto fue traído a la vida gracias a la colaboración creativa y técnica con **Jules, una IA asistente de Google**. Jules jugó un papel clave en la generación de código, el diseño iterativo, la depuración y el refinamiento de esta aplicación. ¡Una verdadera experiencia de co-creación! 🚀
 
-1. **Blender Addon (`addon.py`)**: A Blender addon that creates a socket server within Blender to receive and execute commands
-2. **MCP Server (`src/blender_mcp/server.py`)**: A Python server that implements the Model Context Protocol and connects to the Blender addon
+## 📂 Archivos del Proyecto
 
-## Installation
+-   `index.html`: Estructura principal de la página web.
+-   `style.css`: ¡Magia visual! Todos los estilos del tema "Madrid de Noche".
+-   `script.js`: La lógica de la aplicación (consultas a Overpass API, etc.).
+-   `README.md`: Este archivo informativo.
 
+## ⚠️ Limitaciones
 
-### Prerequisites
+-   La información de los restaurantes (nombre, dirección, tipo de cocina, sitio web) depende enteramente de los datos disponibles y actualizados en OpenStreetMap para Madrid.
+-   No hay filtros de presupuesto ni valoraciones/reviews.
+-   Para un uso intensivo o comercial, considera soluciones de pago o alojar tu propia infraestructura OSM (¡una tarea para valientes!).
 
-- Blender 3.0 or newer
-- Python 3.10 or newer
-- uv package manager: 
-
-**If you're on Mac, please install uv as**
-```bash
-brew install uv
-```
-**On Windows**
-```bash
-powershell -c "irm https://astral.sh/uv/install.ps1 | iex" 
-```
-and then
-```bash
-set Path=C:\Users\nntra\.local\bin;%Path%
-```
-
-Otherwise installation instructions are on their website: [Install uv](https://docs.astral.sh/uv/getting-started/installation/)
-
-**⚠️ Do not proceed before installing UV**
-
-
-### Claude for Desktop Integration
-
-[Watch the setup instruction video](https://www.youtube.com/watch?v=neoK_WMq92g) (Assuming you have already installed uv)
-
-Go to Claude > Settings > Developer > Edit Config > claude_desktop_config.json to include the following:
-
-```json
-{
-    "mcpServers": {
-        "blender": {
-            "command": "uvx",
-            "args": [
-                "blender-mcp"
-            ]
-        }
-    }
-}
-```
-
-### Cursor integration
-
-For Mac users, go to Settings > MCP and paste the following 
-
-- To use as a global server, use "add new global MCP server" button and paste
-- To use as a project specific server, create `.cursor/mcp.json` in the root of the project and paste
-
-
-```json
-{
-    "mcpServers": {
-        "blender": {
-            "command": "uvx",
-            "args": [
-                "blender-mcp"
-            ]
-        }
-    }
-}
-```
-
-For Windows users, go to Settings > MCP > Add Server, add a new server with the following settings:
-
-```json
-{
-    "mcpServers": {
-        "blender": {
-            "command": "cmd",
-            "args": [
-                "/c",
-                "uvx",
-                "blender-mcp"
-            ]
-        }
-    }
-}
-```
-
-[Cursor setup video](https://www.youtube.com/watch?v=wgWsJshecac)
-
-**⚠️ Only run one instance of the MCP server (either on Cursor or Claude Desktop), not both**
-
-### Installing the Blender Addon
-
-1. Download the `addon.py` file from this repo
-1. Open Blender
-2. Go to Edit > Preferences > Add-ons
-3. Click "Install..." and select the `addon.py` file
-4. Enable the addon by checking the box next to "Interface: Blender MCP"
-
-
-## Usage
-
-### Starting the Connection
-![BlenderMCP in the sidebar](assets/addon-instructions.png)
-
-1. In Blender, go to the 3D View sidebar (press N if not visible)
-2. Find the "BlenderMCP" tab
-3. Turn on the Poly Haven checkbox if you want assets from their API (optional)
-4. Click "Connect to Claude"
-5. Make sure the MCP server is running in your terminal
-
-### Using with Claude
-
-Once the config file has been set on Claude, and the addon is running on Blender, you will see a hammer icon with tools for the Blender MCP.
-
-![BlenderMCP in the sidebar](assets/hammer-icon.png)
-
-#### Capabilities
-
-- Get scene and object information 
-- Create, delete and modify shapes
-- Apply or create materials for objects
-- Execute any Python code in Blender
-- Download the right models, assets and HDRIs through [Poly Haven](https://polyhaven.com/)
-- AI generated 3D models through [Hyper3D Rodin](https://hyper3d.ai/)
-
-
-### Example Commands
-
-Here are some examples of what you can ask Claude to do:
-
-- "Create a low poly scene in a dungeon, with a dragon guarding a pot of gold" [Demo](https://www.youtube.com/watch?v=DqgKuLYUv00)
-- "Create a beach vibe using HDRIs, textures, and models like rocks and vegetation from Poly Haven" [Demo](https://www.youtube.com/watch?v=I29rn92gkC4)
-- Give a reference image, and create a Blender scene out of it [Demo](https://www.youtube.com/watch?v=FDRb03XPiRo)
-- "Generate a 3D model of a garden gnome through Hyper3D"
-- "Get information about the current scene, and make a threejs sketch from it" [Demo](https://www.youtube.com/watch?v=jxbNI5L7AH8)
-- "Make this car red and metallic" 
-- "Create a sphere and place it above the cube"
-- "Make the lighting like a studio"
-- "Point the camera at the scene, and make it isometric"
-
-## Hyper3D integration
-
-Hyper3D's free trial key allows you to generate a limited number of models per day. If the daily limit is reached, you can wait for the next day's reset or obtain your own key from hyper3d.ai and fal.ai.
-
-## Troubleshooting
-
-- **Connection issues**: Make sure the Blender addon server is running, and the MCP server is configured on Claude, DO NOT run the uvx command in the terminal. Sometimes, the first command won't go through but after that it starts working.
-- **Timeout errors**: Try simplifying your requests or breaking them into smaller steps
-- **Poly Haven integration**: Claude is sometimes erratic with its behaviour
-- **Have you tried turning it off and on again?**: If you're still having connection errors, try restarting both Claude and the Blender server
-
-
-## Technical Details
-
-### Communication Protocol
-
-The system uses a simple JSON-based protocol over TCP sockets:
-
-- **Commands** are sent as JSON objects with a `type` and optional `params`
-- **Responses** are JSON objects with a `status` and `result` or `message`
-
-## Limitations & Security Considerations
-
-- The `execute_blender_code` tool allows running arbitrary Python code in Blender, which can be powerful but potentially dangerous. Use with caution in production environments. ALWAYS save your work before using it.
-- Poly Haven requires downloading models, textures, and HDRI images. If you do not want to use it, please turn it off in the checkbox in Blender. 
-- Complex operations might need to be broken down into smaller steps
-
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## Disclaimer
-
-This is a third-party integration and not made by Blender. Made by [Siddharth](https://x.com/sidahuj)
+¡Disfruta tu búsqueda gastronómica por Madrid! 🎉
